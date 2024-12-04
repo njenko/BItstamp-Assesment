@@ -29,7 +29,7 @@ And load the *.csv* files into the database
 .import task2_entities_mapping.csv Entities_Mapping
 ```
 
-We then run the code in file:
+We then run all the queries in the **Task 2** folder. First we have:
 
 ```sql
  check_imported_data.sql 

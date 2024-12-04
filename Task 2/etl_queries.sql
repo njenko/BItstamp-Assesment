@@ -30,8 +30,6 @@ SELECT
 FROM Ranked_Profile
 GROUP BY unique_id;
 
-
-
 -- ====================================================================================================
 -- Create a view to add current entity and the correct to each user
 DROP VIEW IF EXISTS User_Countries_Entities;
@@ -51,7 +49,6 @@ LEFT JOIN Entities_Mapping em1
 LEFT JOIN Entities_Mapping em2
     ON uc.original_country = em2.country;
 
-
 -- ====================================================================================================
 -- We don't need to create this table if it is only a one time query
 DROP TABLE IF EXISTS User_Volume_Stats;
@@ -63,6 +60,8 @@ CREATE TABLE User_Volume_Stats (
     median_volume REAL,
     volume_above_average TEXT -- BOOLEAN if I was using PostgreSQL or MySQL
 );
+
+-- ----------------------------------------------------------------------------------------------------
 
 -- The query below can be used as a one time query or to insert data into the table
 
