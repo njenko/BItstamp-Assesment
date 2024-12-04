@@ -1,21 +1,56 @@
--- Create a view to get the latest country for each user
-CREATE VIEW Latest_Country AS
+-- Create a view to get the latest country and the original country for each user
+DROP VIEW IF EXISTS User_Countries;
+
+CREATE VIEW User_Countries AS
+WITH Ranked_Profile AS (
+    SELECT 
+        unique_id,
+        country,
+        date_changed,
+        -- Rank rows for original_country based on the earliest `date_changed`
+        ROW_NUMBER() OVER (
+            PARTITION BY unique_id
+            ORDER BY 
+                CASE WHEN date_changed IS NOT '' THEN date_changed END ASC NULLS LAST
+        ) AS rank_original,
+        -- Identify the row for current_country where `date_changed IS ''`
+        ROW_NUMBER() OVER (
+            PARTITION BY unique_id
+            ORDER BY 
+                CASE WHEN date_changed IS '' THEN 1 ELSE 2 END
+        ) AS rank_current
+    FROM User_Profile
+)
 SELECT 
-    unique_id, 
-    country
-FROM User_Profile
-WHERE date_changed IS '';
+    unique_id,
+    -- Current country: Row with rank_current = 1
+    MAX(CASE WHEN rank_current = 1 THEN country END) AS current_country,
+    -- Original country: Row with rank_original = 1
+    MAX(CASE WHEN rank_original = 1 THEN country END) AS original_country
+FROM Ranked_Profile
+GROUP BY unique_id;
 
--- Create a view to add entity to each user
-CREATE VIEW User_Entity AS
-SELECT
-    lc.unique_id,
-    lc.country,
-    em.entity
-FROM Latest_Country lc
-LEFT JOIN Entities_Mapping em
-ON lc.country = em.country;
 
+
+-- ====================================================================================================
+-- Create a view to add current entity and the correct to each user
+CREATE VIEW User_Countries_Entities AS
+SELECT 
+    uc.unique_id,
+    uc.current_country,
+    uc.original_country,
+    -- Get the entity for the current country
+    em1.entity AS correct_entity,
+    -- Get the entity for the original country
+    em2.entity AS original_entity
+FROM User_Countries uc
+LEFT JOIN Entities_Mapping em1
+    ON uc.current_country = em1.country
+LEFT JOIN Entities_Mapping em2
+    ON uc.original_country = em2.country;
+
+
+-- ====================================================================================================
 -- We don't need to create this table if it is only a one time query
 CREATE TABLE User_Volume_Stats (
     unique_id TEXT PRIMARY KEY,
