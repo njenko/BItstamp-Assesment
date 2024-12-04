@@ -1,17 +1,9 @@
-CREATE TABLE UserProfiles_Clean AS
-SELECT
-    unique_id,
-    country,
-    MAX(date_changed) AS last_date_changed
-FROM User_Profile
-WHERE date_changed IS NULL
-GROUP BY unique_id, country;
+PRAGMA table_info(User_Profile);
+SELECT * FROM User_Profile LIMIT 5;
 
-CREATE TABLE TradingVolume_Clean AS
-SELECT
-    unique_id,
-    trading_date,
-    SUM(volume) AS daily_volume
-FROM Trading_Volume
-GROUP BY unique_id, trading_date;
+PRAGMA table_info(Trading_Volume);
+SELECT * FROM Trading_Volume LIMIT 5;
+
+PRAGMA table_info(Entities_Mapping);
+SELECT * FROM Entities_Mapping LIMIT 5;
 
