@@ -10,21 +10,23 @@ This task is programmed in SQLite so that it can be run as a self contained proj
 
 To run we first set the working directory to the folder with the data, in my case:
 
-```console
+```bash
 cd Data
 ```
 
 Then create/open the database with:
 
-```console
+```bash
 sqlite3 bitstamp.db
 ```
 
-
+```bash
 .mode csv
 .import task2_userprofile.csv User_Profile
 .import task2_trading_volume.csv Trading_Volume
 .import task2_entities_mapping.csv Entities_Mapping
+```
+
 
 New table corrected from "user_id " to "user_id" made because you cant rename columns with SQLite
 
