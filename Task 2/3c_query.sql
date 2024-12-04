@@ -1,7 +1,7 @@
 -- Since the entity is not changed automatically, we have to use original entity to calculate trading volume per entity
 SELECT 
     uce.original_entity AS entity,
-    SUM(CAST(tv.daily_trading_volume AS REAL)) AS total_volume
+    SUM(tv.daily_trading_volume) AS total_volume
 FROM Trading_Volume tv
 JOIN User_Countries_Entities uce
     ON tv.unique_id = uce.unique_id

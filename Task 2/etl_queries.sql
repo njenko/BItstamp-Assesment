@@ -34,6 +34,8 @@ GROUP BY unique_id;
 
 -- ====================================================================================================
 -- Create a view to add current entity and the correct to each user
+DROP VIEW IF EXISTS User_Countries_Entities;
+
 CREATE VIEW User_Countries_Entities AS
 SELECT 
     uc.unique_id,
@@ -52,6 +54,8 @@ LEFT JOIN Entities_Mapping em2
 
 -- ====================================================================================================
 -- We don't need to create this table if it is only a one time query
+DROP TABLE IF EXISTS User_Volume_Stats;
+
 CREATE TABLE User_Volume_Stats (
     unique_id TEXT PRIMARY KEY,
     total_volume REAL,
