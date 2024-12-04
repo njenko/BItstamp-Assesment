@@ -1,9 +1,11 @@
-PRAGMA table_info(User_Profile);
-SELECT * FROM User_Profile LIMIT 5;
+CREATE VIEW Latest_Country AS
+SELECT 
+    unique_id, 
+    country
+FROM User_Profile
+WHERE date_changed IS NULL;
 
-PRAGMA table_info(Trading_Volume);
-SELECT * FROM Trading_Volume LIMIT 5;
+PRAGMA table_info(Latest_Country);
+SELECT * FROM Latest_Country LIMIT 5;
 
-PRAGMA table_info(Entities_Mapping);
-SELECT * FROM Entities_Mapping LIMIT 5;
-
+SELECT unique_id, country, date_changed FROM User_Profile LIMIT 5;
