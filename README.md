@@ -3,7 +3,7 @@
 ## Task 1
 The first task is programmed in python. All the code and explanations are combined in the **Bitstamp_Assignment_Task1.ipynb** file.
 
-There is also a separate markdown file with only the explanations, as there is a lot of code and graphs in the original file which makes it a bit hader to navigate to the explanation. 
+There is also a separate markdown file **Task_1.md** with only the explanations, as there is a lot of code and graphs in the original file which makes it a bit hader to navigate to the explanation. 
 
 All the outputs, like log files or the cleaned data .csv file are in the Output folder. Additionally there is a Plots folder in there, where all the plots from the main file are saved as .png-s.
 
