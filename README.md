@@ -102,3 +102,9 @@ The query gives us the answer:
 
 
 ## Task 3
+
+We generated some random news for each day in the file **task3_bitstamp_data_updated.csv**. 
+
+Some new derived data is then added with code in **Bitstamp_Assignment_Task3.ipynb**
+
+The final presentation is given in the form of a Tableau worksheet and exported into a PowerPoint. Both are in the Task 3 folder.
