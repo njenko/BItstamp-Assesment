@@ -108,3 +108,4 @@ We generated some random news for each day in the file **task3_bitstamp_data_upd
 Some new derived data is then added with code in **Bitstamp_Assignment_Task3.ipynb**
 
 The final presentation is given in the form of a Tableau worksheet and exported into a PowerPoint. Both are in the Task 3 folder.
+I appologize in advance for the wonky look of the Tableau presentation, it was my first time using the tool :)
